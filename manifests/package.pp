@@ -12,8 +12,8 @@ class dockeree::package (
 
   exec { 'install_Docker':
    provider => powershell,
-   command => 'Install-Package Docker -ProviderName DockerMsftProvider -Force -RequiredVersion'
-   unless => 'Get-Package Docker'}
+   command => 'Install-Package Docker -ProviderName DockerMsftProvider -Force -RequiredVersion',
+   unless => 'Get-Package Docker'},
   }
 
 
