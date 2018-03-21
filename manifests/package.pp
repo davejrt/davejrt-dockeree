@@ -5,6 +5,8 @@ class dockeree::package (
 {
 
 
+
+  notify { "hello": }
   exec { 'install_DockerMsftProvider':
     provider => powershell,
     command => 'Install-Module DockerMsftProvider -Force',
