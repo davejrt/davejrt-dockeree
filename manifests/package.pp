@@ -1,8 +1,6 @@
 class dockeree::package (
 
-)
-
-{
+) {
 
   exec { 'install_DockerMsftProvider':
     provider => powershell,
@@ -12,9 +10,15 @@ class dockeree::package (
 
   exec { 'install_Docker':
    provider => powershell,
-   command => 'Install-Package Docker -ProviderName DockerMsftProvider -Force -RequiredVersion',
-   unless => 'Get-Package Docker',
+   command => 'Install-Package -Name docker -ProviderName DockerMsftProvider -Force -RequiredVersion',
+   unless => 'Get-Package docker',
+   notifty => Reboot['after_install'],
   }
 
+  reboot { 'after_install':}
 
+  service { 'Docker':
+    enable => true,
+    ensure => 'running',
+  }
 }
