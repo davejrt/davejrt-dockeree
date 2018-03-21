@@ -1,4 +1,4 @@
-class docker::package (
+class dockeree::package (
 
 )
 
